@@ -69,30 +69,24 @@ turtle.colormode(255)
 
 # draw the second polygon embedded inside the original
 art_style = int(input("Which art do you want to generate? Enter a number between 1 to 8, inclusive: "))
+size = random.randint(50, 150)
+orientation = random.randint(0, 90)
+location = [random.randint(-300, 300), random.randint(-200, 200)]
+color = Draw.get_new_color()
+border_size = random.randint(1, 10)
 if art_style == 1:
+    pass
 if art_style == 5:
     for i in range(30):
-        size = random.randint(50, 150)
-        orientation = random.randint(0, 90)
-        location = [random.randint(-300, 300), random.randint(-200, 200)]
-        color = Draw.get_new_color()
-        border_size = random.randint(1, 10)
         pic = Draw(3,size, orientation, location, color, border_size)
         Draw.draw_polygon(pic)
         reduction_ratio = 0.618
-        turtle.penup()
-        turtle.forward(size * (1 - reduction_ratio) / 2)
-        turtle.left(90)
-        turtle.forward(size * (1 - reduction_ratio) / 2)
-        turtle.right(90)
-        location[0] = turtle.pos()[0]
-        location[1] = turtle.pos()[1]
-        size *= reduction_ratio
-        newpic = Draw(3,size, orientation, location, color, border_size)
-        Draw.draw_polygon(newpic)
-        size *= reduction_ratio
-        _newpic = Draw(3,size, orientation, location, color, border_size)
-        Draw.draw_polygon(_newpic)
+        pic.color = Draw.get_new_color()
+        Draw.repositioning(pic)
+        Draw.resize(pic)
+        Draw.draw_polygon(pic)
+        Draw.resize(pic)
+        Draw.draw_polygon(pic)
 
 
 
