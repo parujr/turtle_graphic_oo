@@ -2,13 +2,13 @@ import turtle
 import random
 reduction_ratio = 0.618
 class Draw:
-    def __init__(self, num_sides, size, orientation, location, color, border_size):
-        self.num_sides = num_sides
-        self.size = size
-        self.orientation = orientation
-        self.location = location
-        self.color = color
-        self.border_size = border_size
+    def __init__(self,numside):
+        self.num_sides = numside
+        self.size = random.randint(50, 150)
+        self.orientation = random.randint(0, 90)
+        self.location = [random.randint(-300, 300), random.randint(-200, 200)]
+        self.color = Draw.get_new_color()
+        self.border_size = random.randint(1, 10)
 
     def draw_polygon(self):
         turtle.penup()
@@ -18,7 +18,7 @@ class Draw:
         turtle.pensize(self.border_size)
         turtle.pendown()
         for _ in range(self.num_sides):
-            turtle.forward(size)
+            turtle.forward(self.size)
             turtle.left(360/self.num_sides)
         turtle.penup()
 
@@ -69,24 +69,59 @@ turtle.colormode(255)
 
 # draw the second polygon embedded inside the original
 art_style = int(input("Which art do you want to generate? Enter a number between 1 to 8, inclusive: "))
-size = random.randint(50, 150)
-orientation = random.randint(0, 90)
-location = [random.randint(-300, 300), random.randint(-200, 200)]
-color = Draw.get_new_color()
-border_size = random.randint(1, 10)
+
 if art_style == 1:
-    pass
-if art_style == 5:
     for i in range(30):
-        pic = Draw(3,size, orientation, location, color, border_size)
+        pic = Draw(3)
         Draw.draw_polygon(pic)
-        reduction_ratio = 0.618
-        pic.color = Draw.get_new_color()
+elif art_style == 2:
+    for i in range(30):
+        pic = Draw(4)
+        Draw.draw_polygon(pic)
+elif art_style == 3:
+    for i in range(30):
+        pic = Draw(5)
+        Draw.draw_polygon(pic)
+elif art_style == 4:
+    for i in range(30):
+        numside = random.randint(3,5)
+        pic = Draw(numside)
+        Draw.draw_polygon(pic)
+
+elif art_style == 5:
+    for i in range(30):
+        pic = Draw(3)
+        Draw.draw_polygon(pic)
         Draw.repositioning(pic)
-        Draw.resize(pic)
+        for x in range(2):
+            Draw.resize(pic)
+            Draw.draw_polygon(pic)
+elif art_style == 6:
+    for i in range(30):
+        pic = Draw(4)
         Draw.draw_polygon(pic)
-        Draw.resize(pic)
+        Draw.repositioning(pic)
+        for x in range(2):
+            Draw.resize(pic)
+            Draw.draw_polygon(pic)
+elif art_style == 7:
+    for i in range(30):
+        pic = Draw(5)
         Draw.draw_polygon(pic)
+        Draw.repositioning(pic)
+        for x in range(2):
+            Draw.resize(pic)
+            Draw.draw_polygon(pic)
+elif art_style == 8:
+    for i in range(30):
+        numside = random.randint(3,5)
+        pic = Draw(numside)
+        Draw.draw_polygon(pic)
+        Draw.repositioning(pic)
+        for x in range(2):
+            Draw.resize(pic)
+            Draw.draw_polygon(pic)
+
 
 
 
